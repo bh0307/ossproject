@@ -64,8 +64,8 @@ crashlytics-build.properties
 # bfg
 bfg-1.14.0.jar
 
-#Upgrade Log
+# Upgrade Log
 *.htm
 
-
-
+# Editor User Settings
+EditorUserSettings.asset

@@ -69,3 +69,6 @@ bfg-1.14.0.jar
 
 # Editor User Settings
 EditorUserSettings.asset
+
+# Photon Server Setting
+PhotonServerSettings.asset

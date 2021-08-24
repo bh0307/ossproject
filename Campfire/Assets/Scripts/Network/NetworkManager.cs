@@ -6,6 +6,7 @@ using Photon.Realtime;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
+
     #region 접속 상태
     static bool isOnConnected = false;
     static bool isOnLobby = false;
@@ -19,6 +20,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         else
             return "isDisConnected";
     }
+
+    public string Status() => PhotonNetwork.NetworkClientState.ToString();
     #endregion
 
     #region 서버 접속/종료
@@ -48,5 +51,21 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         isOnConnected = false;
     }
 
+
+
     #endregion
+
+    #region 방
+
+    public void CreateRoom()
+    {
+        PhotonNetwork.CreateRoom(Random.Range(10, 1000).ToString(), new RoomOptions { MaxPlayers = 4 });
+    }
+
+    public void LeaveRoom() => PhotonNetwork.LeaveRoom();
+
+    public void JoinRoom(string RoomName) => PhotonNetwork.JoinRoom(RoomName);
+
+    #endregion
+
 }

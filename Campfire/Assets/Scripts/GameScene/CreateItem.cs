@@ -32,8 +32,8 @@ public class CreateItem : MonoBehaviour
 
             if (map[posX, posY] == 0)           // map 배열의 값이 0이면 해당 위치에는 아이템이 없다는 뜻
             {
-                selection = Random.Range(0, prefabs.Length);
-                selectedPrefab = prefabs[selection];
+                selection = Random.Range(1, prefabs.Length+1);
+                selectedPrefab = prefabs[selection-1];
 
                 map[posX, posY] = selection;    // map 배열에 생성할 아이템 정보 저장
                 break;

@@ -8,19 +8,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 {
 
     #region 접속 상태
-    static bool isOnConnected = false;
-    static bool isOnLobby = false;
-
-    public static string GetStatus()
-    {
-        if (isOnLobby)
-            return "isOnLobby";
-        else if (isOnConnected)
-            return "isOnConnected";
-        else
-            return "isDisConnected";
-    }
-
     public string Status() => PhotonNetwork.NetworkClientState.ToString();
     #endregion
 
@@ -30,7 +17,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("Photon 서버 접속 완료");
-        isOnConnected = true;
         JoinLobby();
     }
 
@@ -39,7 +25,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         Debug.Log("로비 접속 완료");
-        isOnLobby = true;
         PhotonNetwork.NickName = "멋쟁이 " + Random.Range(0, 1000).ToString("0000");
     }
 
@@ -48,8 +33,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnDisconnected(DisconnectCause cause)
     {
         Debug.Log("Photon 서버 접속 종료");
-        isOnLobby = false;
-        isOnConnected = false;
     }
 
 

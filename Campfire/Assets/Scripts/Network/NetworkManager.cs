@@ -26,6 +26,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("로비 접속 완료");
         PhotonNetwork.NickName = "멋쟁이 " + Random.Range(0, 1000).ToString("0000");
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     public void Disconnect() => PhotonNetwork.Disconnect();

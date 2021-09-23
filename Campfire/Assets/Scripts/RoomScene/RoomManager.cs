@@ -11,6 +11,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] GameObject playerListItemPrefab;
     [SerializeField] Transform playerListContent;
+    [SerializeField] GameObject gameStartBtn;
     void Start()
     {
         Debug.Log("test1111");
@@ -20,17 +21,24 @@ public class RoomManager : MonoBehaviourPunCallbacks
             Instantiate(playerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(players[i]);
             
         }
+        gameStartBtn.SetActive(PhotonNetwork.IsMasterClient);
+
     }
 
-    public override void OnPlayerEnteredRoom(Player newPlayer)//다른 플레이어가 방에 들어오면 작동
+    public override void OnPlayerEnteredRoom(Player newPlayer)//다른 플레이어가 방에 들어오면 동작
     {
         Debug.Log("test2222");
         Instantiate(playerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(newPlayer);
     }
     
-
-    public void ChangeScene()
+    public void LeaveRoom()
     {
         SceneManager.LoadScene("LobbyScene");
+    }
+    
+    public void GameStart()
+    {
+        //if(PhotonNetwork.PlayerList.Count() == 4)
+        PhotonNetwork.LoadLevel(3);
     }
 }

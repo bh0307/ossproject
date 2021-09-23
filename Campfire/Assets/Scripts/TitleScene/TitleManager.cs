@@ -3,21 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
-public class TitleManager : MonoBehaviour
+public class TitleManager : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     private NetworkManager networkManager;
 
-    public void ChangeScene()
+    public override void OnConnectedToMaster()
     {
-        StartCoroutine(LoadLobby());
-    }
-
-    IEnumerator LoadLobby()
-    {
-        networkManager.Connect();
-        yield return new WaitUntil(() => NetworkManager.GetStatus() == "isOnLobby");
         SceneManager.LoadScene("LobbyScene");
     }
 }

@@ -17,16 +17,12 @@ public class PlayerListItem : MonoBehaviourPunCallbacks
         nickname.text = _player.NickName;
     }
 
-    public override void OnPlayerLeftRoom(Player otherPlayer)
+    public override void OnPlayerLeftRoom(Player left)
     {
-        if (player == otherPlayer)
+        if (player == left)
         {
+            Debug.Log("test 3333");
             Destroy(gameObject);
         }
-    }
-
-    public override void OnLeftRoom()
-    {
-        Destroy(gameObject);
     }
 }

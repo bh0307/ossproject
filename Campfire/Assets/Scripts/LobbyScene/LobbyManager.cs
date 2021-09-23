@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
-    #region º¯¼ö
+    #region ë³€ìˆ˜
 
     [Header("Network")]
     [SerializeField] private NetworkManager networkManager;
@@ -46,37 +46,44 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void PanelChange()
     {
         lobbyPanel.SetActive(!lobbyPanel.activeSelf);
-        matchingPanel.SetActive(!lobbyPanel.activeSelf); //Ç×»ó lobbyPanel°ú ´Ù¸¥»óÅÂ¸¦ À¯ÁöÇÑ´Ù.
+        matchingPanel.SetActive(!lobbyPanel.activeSelf); //í•­ìƒ lobbyPanelê³¼ ë‹¤ë¥¸ìƒíƒœë¥¼ ìœ ì§€í•œë‹¤.
     }
     #endregion
 
     #region RoomList Update
-    public override void OnRoomListUpdate(List<RoomInfo> changed_roomList)  //ÀÌÀü°ú ºñ±³ÇØ ¹Ù²ïºÎºĞ¸¸ changed_roomList·Î ¸¸µé¾îÁø´Ù.
+    public override void OnRoomListUpdate(List<RoomInfo> changed_roomList)  //ì´ì „ê³¼ ë¹„êµí•´ ë°”ë€ë¶€ë¶„ë§Œ changed_roomListë¡œ ë§Œë“¤ì–´ì§„ë‹¤.
     {
         Debug.Log("RoomListUpDate");
         CurRoomListUpdate(changed_roomList);
         ButtonUpdate(current_roomList);
     }
 
-    public void CurRoomListUpdate(List<RoomInfo> changed_roomList) //changed_roomList¸¦ ¹ÙÅÁÀ¸·Î current_roomList¸¦ Update
+    public void CurRoomListUpdate(List<RoomInfo> changed_roomList) //changed_roomListë¥¼ ë°”íƒ•ìœ¼ë¡œ current_roomListë¥¼ Update
     {
         for (int i = 0; i < changed_roomList.Count; i++)
         {
             if (changed_roomList[i].RemovedFromList)
-                current_roomList.RemoveAt(current_roomList.IndexOf(changed_roomList[i]));   //»ç¶óÁø ¹æ Á¦°Å
+                current_roomList.RemoveAt(current_roomList.IndexOf(changed_roomList[i]));   //ì‚¬ë¼ì§„ ë°© ì œê±°
             else
             {
                 if (current_roomList.Contains(changed_roomList[i]))
-                    current_roomList[current_roomList.IndexOf(changed_roomList[i])] = changed_roomList[i]; //º¯°æµÈ ¹æ ¾÷µ¥ÀÌÆ®
+                    current_roomList[current_roomList.IndexOf(changed_roomList[i])] = changed_roomList[i]; //ë³€ê²½ëœ ë°© ì—…ë°ì´íŠ¸
                 else
-                    current_roomList.Add(changed_roomList[i]); //»ı±ä ¹æ Ãß°¡
+                    current_roomList.Add(changed_roomList[i]); //ìƒê¸´ ë°© ì¶”ê°€
             }
         }
         for (int i = 0; i < current_roomList.Count; i++)
             print("Debug : " + i.ToString() + " " + current_roomList[i].Name + " " + current_roomList[i].PlayerCount.ToString());
+
+        maxpage = current_roomList.Count / 4;
+
+        if(cur > maxpage)
+        {
+            cur = maxpage;
+        }
     }
 
-    public void ButtonUpdate(List<RoomInfo> current_roomList)  //current_roomList¸¦ ¹ÙÅÁÀ¸·Î Button Update
+    public void ButtonUpdate(List<RoomInfo> current_roomList)  //current_roomListë¥¼ ë°”íƒ•ìœ¼ë¡œ Button Update
     {
         for (int i = 0; i < roomBtn.Length; i++)
         {
@@ -94,6 +101,25 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             }
         }
     }
+
+    public void Next()
+    {
+        if(cur<maxpage)
+        {
+            cur++;
+            ButtonUpdate(current_roomList);
+            Debug.Log(cur + " " + maxpage);
+        }
+    }
+
+    public void Prev()
+    {
+        if(cur>0)
+        {
+            cur--;
+            ButtonUpdate(current_roomList);
+        }
+    }
     #endregion
 
     #region JoinRoom
@@ -104,7 +130,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
-        Debug.Log("¹æ Á¢¼Ó ¿Ï·á");
+        Debug.Log("ë°© ì ‘ì† ì™„ë£Œ");
         SceneManager.LoadScene("RoomScene");
     }
     #endregion

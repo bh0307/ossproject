@@ -1124,9 +1124,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 835196917}
+      - m_Target: {fileID: 1598142089}
         m_TargetAssemblyTypeName: LobbyManager, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: Next
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3192,7 +3192,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1598142089}
         m_TargetAssemblyTypeName: LobbyManager, Assembly-CSharp
-        m_MethodName: SetActiveFindRoomPanel
+        m_MethodName: Prev
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

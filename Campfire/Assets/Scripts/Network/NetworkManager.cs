@@ -7,7 +7,7 @@ using Photon.Realtime;
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
 
-    #region Á¢¼Ó »óÅÂ
+    #region ì ‘ì† ìƒíƒœ
     static bool isOnConnected = false;
     static bool isOnLobby = false;
 
@@ -24,12 +24,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public string Status() => PhotonNetwork.NetworkClientState.ToString();
     #endregion
 
-    #region ¼­¹ö Á¢¼Ó/Á¾·á
+    #region ì„œë²„ ì ‘ì†/ì¢…ë£Œ
     public void Connect() => PhotonNetwork.ConnectUsingSettings();
 
     public override void OnConnectedToMaster()
     {
-        Debug.Log("Photon ¼­¹ö Á¢¼Ó ¿Ï·á");
+        Debug.Log("Photon ì„œë²„ ì ‘ì† ì™„ë£Œ");
         isOnConnected = true;
         JoinLobby();
     }
@@ -38,15 +38,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedLobby()
     {
-        Debug.Log("·Îºñ Á¢¼Ó ¿Ï·á");
+        Debug.Log("ë¡œë¹„ ì ‘ì† ì™„ë£Œ");
         isOnLobby = true;
+        PhotonNetwork.NickName = "ë©‹ìŸì´ " + Random.Range(0, 1000).ToString("0000");
     }
 
     public void Disconnect() => PhotonNetwork.Disconnect();
 
     public override void OnDisconnected(DisconnectCause cause)
     {
-        Debug.Log("Photon ¼­¹ö Á¢¼Ó Á¾·á");
+        Debug.Log("Photon ì„œë²„ ì ‘ì† ì¢…ë£Œ");
         isOnLobby = false;
         isOnConnected = false;
     }
@@ -55,16 +56,24 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     #endregion
 
-    #region ¹æ
+    #region ë°©
 
     public void CreateRoom()
     {
         PhotonNetwork.CreateRoom(Random.Range(10, 1000).ToString(), new RoomOptions { MaxPlayers = 4 });
     }
 
+    public override void OnCreateRoomFailed(short returnCode, string message)
+    {
+        Debug.Log("Room Creation Failed: " + message);
+        PhotonNetwork.CreateRoom(Random.Range(10, 1000).ToString(), new RoomOptions { MaxPlayers = 4 });
+    }
+
     public void LeaveRoom() => PhotonNetwork.LeaveRoom();
 
     public void JoinRoom(string RoomName) => PhotonNetwork.JoinRoom(RoomName);
+
+    
 
     #endregion
 

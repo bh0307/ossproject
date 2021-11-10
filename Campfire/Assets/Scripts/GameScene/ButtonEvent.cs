@@ -29,5 +29,14 @@ public class ButtonEvent : MonoBehaviour
     {
         Playermove.RightMove = true;
     }
+    public void up()
+       {
+            Playermove.UpMove = true;
+       }
+       public void down()
+       {
+           Playermove.DownMove = true;
+       }
 }
+
     

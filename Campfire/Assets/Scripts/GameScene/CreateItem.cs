@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class CreateItem : MonoBehaviour
 {
-    public GameObject[] prefabs;            //Âï¾î³¾ °ÔÀÓ ¿ÀºêÁ§Æ®¸¦ ³Ö¾î¿ä
-                                            //¹è¿­·Î ¸¸µç ÀÌÀ¯´Â °ÔÀÓ ¿ÀºêÁ§Æ®¸¦
-                                            //´Ù¾çÇÏ°Ô Âï¾î³»±â À§ÇØ¼­ ÀÔ´Ï´Ù
+    public GameObject[] prefabs;            //ì°ì–´ë‚¼ ê²Œì„ ì˜¤ë¸Œì íŠ¸ë¥¼ ë„£ì–´ìš”
+                                            //ë°°ì—´ë¡œ ë§Œë“  ì´ìœ ëŠ” ê²Œì„ ì˜¤ë¸Œì íŠ¸ë¥¼
+                                            //ë‹¤ì–‘í•˜ê²Œ ì°ì–´ë‚´ê¸° ìœ„í•´ì„œ ì…ë‹ˆë‹¤
 
-    public int[,] map = new int[8, 8];      //°ÔÀÓ ¸Ê 8x8¿¡ ¹èÄ¡µÈ ¾ÆÀÌÅÛ¿¡ ´ëÇÑ ¹è¿­
-    public int count = 10;                  //Âï¾î³¾ ¿ÀºêÁ§Æ® °¹¼ö
+    public int[,] map = new int[8, 8];      //ê²Œì„ ë§µ 8x8ì— ë°°ì¹˜ëœ ì•„ì´í…œì— ëŒ€í•œ ë°°ì—´
+    public int count = 10;                  //ì°ì–´ë‚¼ ì˜¤ë¸Œì íŠ¸ ê°¯ìˆ˜
     void Start()
     {
-        for (int i = 0; i < count; i++)     //count ¼ö ¸¸Å­ »ı¼ºÇÑ´Ù.
+        for (int i = 0; i < count; i++)     //count ìˆ˜ ë§Œí¼ ìƒì„±í•œë‹¤.
         {
             Spawn();
         }
@@ -30,19 +30,26 @@ public class CreateItem : MonoBehaviour
             posX = Random.Range(0, 8);
             posY = Random.Range(0, 8);
 
-            if (map[posX, posY] == 0)           // map ¹è¿­ÀÇ °ªÀÌ 0ÀÌ¸é ÇØ´ç À§Ä¡¿¡´Â ¾ÆÀÌÅÛÀÌ ¾ø´Ù´Â ¶æ
+            if (1< posX && posX <6 && 1< posY && posY <6)
+            {
+                continue;
+            }
+            
+
+            if (map[posX, posY] == 0)           // map ë°°ì—´ì˜ ê°’ì´ 0ì´ë©´ í•´ë‹¹ ìœ„ì¹˜ì—ëŠ” ì•„ì´í…œì´ ì—†ë‹¤ëŠ” ëœ»
             {
                 selection = Random.Range(1, prefabs.Length+1);
                 selectedPrefab = prefabs[selection-1];
 
-                map[posX, posY] = selection;    // map ¹è¿­¿¡ »ı¼ºÇÒ ¾ÆÀÌÅÛ Á¤º¸ ÀúÀå
+                map[posX, posY] = selection;    // map ë°°ì—´ì— ìƒì„±í•  ì•„ì´í…œ ì •ë³´ ì €ì¥
                 break;
             }
+
         }
 
         Vector3 spawnPos = new Vector3(posX * 2, 0, posY * 2);
 
-        GameObject instance = Instantiate(selectedPrefab, spawnPos, Quaternion.identity);
+        //GameObject instance = Instantiate(selectedPrefab, spawnPos, Quaternion.identity);
         Debug.Log(posX + " " + posY);
     }
 }

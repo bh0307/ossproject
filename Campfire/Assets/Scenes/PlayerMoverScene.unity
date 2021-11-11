@@ -2644,6 +2644,7 @@ MonoBehaviour:
   RightMove: 0
   UpMove: 0
   DownMove: 0
+  isMoving: 0
   countMove: {x: 0, y: 0, z: 0}
   target_x: {x: 0, y: 0, z: 0}
   target_z: {x: 0, y: 0, z: 0}

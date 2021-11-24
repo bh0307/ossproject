@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    private int myTurn;
+    public int myTurn;
     private bool isMyTurnSelected = false;
     PhotonView PV;
     public static PlayerController playerController;
@@ -32,20 +32,23 @@ public class PlayerController : MonoBehaviour
     }
 
     [PunRPC]
-    void CheckMyTurn()
+    public void CheckMyTurn()
     {
         if(!PV.IsMine)
             return;
+        
+        Debug.Log(GM.GetCurTurn() + "현재 턴");
+        Debug.Log(gameObject.GetComponent<PlayerController>().myTurn + "나의 턴");
 
         if(myTurn == GM.GetCurTurn())
         {
-            GM.txt.text = myTurn.ToString();
             Debug.Log("myTurn!");
+            UiManager.UM.MyTurnStart();
         }
         else
         {
-            GM.txt.text = "not my Turn";
             Debug.Log("not my Turn");
+            UiManager.UM.OthersTurn();
         }
     }
 }

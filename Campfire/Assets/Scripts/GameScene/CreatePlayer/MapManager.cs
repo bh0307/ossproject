@@ -1,16 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class MapManager : MonoBehaviour
 {
     public int[,] map = new int[8, 8];      //게임 맵 8x8에 배치된 아이템에 대한 배열
+    public Vector3[,] map_pos = new Vector3[8,8];
     public int count = 10;                  //찍어낼 오브젝트 갯수
+
+    public static MapManager MM;
+    PhotonView PV;
+
+    void Awake()
+    {
+        MM=this;
+        PV = GetComponent<PhotonView>();
+    }
     void Start()
     {
         for (int i = 0; i < count; i++)     //count 수 만큼 생성한다.
         {
             Spawn();
+        }
+    }
+
+    public void SetMapPos()
+    {
+        for(int i=0; i<8; i++)
+        {
+            for(int j=0; j<8; j++)
+            {
+               map_pos[i,j] = new Vector3( 2 * i, 0, -2 * j);
+            }
         }
     }
 

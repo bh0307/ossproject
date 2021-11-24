@@ -31,7 +31,7 @@ public class MapManager : MonoBehaviour
         {
             for(int j=0; j<8; j++)
             {
-               map_pos[i,j] = new Vector3( 2 * i, 0, -2 * j);
+               map_pos[i,j] = new Vector3( 2 * j, 0, -2 * i);
             }
         }
     }

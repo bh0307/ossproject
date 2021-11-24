@@ -46,6 +46,10 @@ public class InitManager : MonoBehaviour
     void CreatePlayer() //플레이어 오브젝트 생성
     {
         GM.mine = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "PlayerObj"), newPos, Quaternion.identity);
+        GM.myController = GM.mine.GetComponent<PlayerController>();
+        GM.myController.curPosX = posX;
+        GM.myController.curPosY = posY;
+        GM.myController.InitTargetPlane();
     }
 
     IEnumerator SetPlayersInfo() //플레이어 순서 지정

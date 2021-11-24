@@ -22,18 +22,7 @@ public class UiManager : MonoBehaviour
         UM=this;
         PV = GetComponent<PhotonView>();
     }
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     public void MyTurnStart()
     {
         myTurnStartPanel.SetActive(true);
@@ -48,6 +37,7 @@ public class UiManager : MonoBehaviour
         myTurnMovePanel.SetActive(true);
         myTurnActionPanel.SetActive(false);
         othersTurnPanel.SetActive(false);
+        GameManager.GM.myController.Bulddeok();
     }
 
     public void MyTurnAction()

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public int playerCount;
 
     public GameObject mine;
+    public PlayerController myController;
     public List<PlayerController> PlayerControllerList = new List<PlayerController>();
 
     public static GameManager GM;
@@ -21,14 +22,9 @@ public class GameManager : MonoBehaviour
         GM = this;
         PV = GetComponent<PhotonView>();
     }
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
-        txt.text = "curTurn : " + curTurn.ToString() + " myTurn:" + mine.GetComponent<PlayerController>().myTurn.ToString();
+        txt.text = "curTurn : " + curTurn.ToString() + " myTurn:" + myController.myTurn.ToString();
     }
 
     [PunRPC]
@@ -44,20 +40,8 @@ public class GameManager : MonoBehaviour
     [PunRPC]
     public void NewTurnStart()
     {
-        /*
-        GetComponent<PhotonView>().RPC("CurTurnSync", RpcTarget.All);
-
-        for(int i=0; i<playerCount; i++)
-        {
-            PlayerControllerList[i].GetComponent<PhotonView>().RPC("CheckMyTurn", RpcTarget.All);
-            //각 클라이언트에서 컨트롤러 리스트가 다르지만 적어도 한번 순회함은 변함 없음
-        }
-        */
-
         curTurn = (curTurn+1) % playerCount;
-        mine.GetComponent<PlayerController>().CheckMyTurn();
-        //mine.GetComponent<PhotonView>().RPC("CheckMyTurn", RpcTarget.All);
-        
+        myController.CheckMyTurn();
     }
 
     [PunRPC]
@@ -71,14 +55,13 @@ public class GameManager : MonoBehaviour
         return curTurn;
     }
 
-    /*
-    public void GameStart()
+    public void SetTarget(int i)
     {
-        for(int i=0; i<playerCount; i++)
-        {
-            PlayerControllerList[i].GetComponent<PhotonView>().RPC("CheckMyTurn", RpcTarget.All);
-            
-        }
+        myController.SetTarget(i);
     }
-    */
+
+    public void Move()
+    {
+        myController.Move();
+    }
 }

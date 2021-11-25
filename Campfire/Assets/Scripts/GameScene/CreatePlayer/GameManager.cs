@@ -62,6 +62,6 @@ public class GameManager : MonoBehaviour
 
     public void Move()
     {
-        myController.Move();
+        _ = myController.Move();
     }
 }

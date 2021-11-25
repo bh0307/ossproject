@@ -5,6 +5,8 @@ using Photon.Pun;
 using static InitManager;
 using static GameManager;
 using UnityEngine.UI;
+using System.Threading;
+using System.Threading.Tasks;
 
 public class PlayerController : MonoBehaviour
 {
@@ -76,10 +78,37 @@ public class PlayerController : MonoBehaviour
         }  
     }
 
-    public void Move()
+    public async Task Move()
     {
         targetPlane.SetActive(false);
-        //TODO 이동 로직
+
+        while(true)
+        {
+            if(transform.position == MapManager.MM.map_pos[targetPosX, curPosY])
+            {
+                Debug.Log("while 1 break");
+                curPosX = targetPosX;
+                break;
+            }
+                
+            transform.position = Vector3.MoveTowards(transform.position, MapManager.MM.map_pos[targetPosX, curPosY], 2f * Time.deltaTime);
+            await Task.Yield();
+        }
+
+        while(true)
+        {
+            if(transform.position == MapManager.MM.map_pos[targetPosX, targetPosY])
+            {
+                Debug.Log("while 2 break");
+                curPosY = targetPosY;
+                break;
+            }
+                
+            transform.position = Vector3.MoveTowards(transform.position, MapManager.MM.map_pos[targetPosX, targetPosY], 2f * Time.deltaTime);
+            await Task.Yield();
+        }
+
+        Inventory.IM.GetItem(curPosX, curPosY);
     }
     
     

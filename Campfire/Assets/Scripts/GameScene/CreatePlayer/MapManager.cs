@@ -36,6 +36,17 @@ public class MapManager : MonoBehaviour
         }
     }
 
+    [PunRPC]
+    public void SetMapItem(int posX, int posY, int item)
+    {
+        map[posX, posY] = item;
+    }
+
+    public void RPC_SetMapItem(int posX, int posY, int item)
+    {
+        PV.RPC("SetMapItem", RpcTarget.All, posX, posY, item);
+    }
+
     private void Spawn()
     {
         int posX;

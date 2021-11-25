@@ -68,6 +68,7 @@ public class MapManager : MonoBehaviour
     public void RPC_SetMapItem(int posX, int posY, int item)
     {
         PV.RPC("SetMapItem", RpcTarget.All, posX, posY, item);
+        Debug.Log(posX + " " + posY);
     }
 
     private void Spawn()
@@ -88,9 +89,5 @@ public class MapManager : MonoBehaviour
                 break;
             }
         }
-
-        Vector3 spawnPos = new Vector3(posX * 2, 0, posY * 2);
-
-        Debug.Log(posX + " " + posY);
     }
 }

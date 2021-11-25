@@ -20,10 +20,14 @@ public class MapManager : MonoBehaviour
     }
     void Start()
     {
-        for (int i = 0; i < count; i++)     //count 수 만큼 생성한다.
+        if(PhotonNetwork.IsMasterClient)
         {
-            Spawn();
+            for (int i = 0; i < count; i++)     //count 수 만큼 생성한다.
+            {
+                Spawn();
+            }
         }
+        
     }
 
     public void SetMapPos()

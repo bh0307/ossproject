@@ -89,5 +89,7 @@ public class MapManager : MonoBehaviour
                 break;
             }
         }
+
+        Debug.Log(posX + " " + posY);
     }
 }

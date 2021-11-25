@@ -7,6 +7,7 @@ public class MapManager : MonoBehaviour
 {
     public int[,] map = new int[8, 8];      //게임 맵 8x8에 배치된 아이템에 대한 배열
     public Vector3[,] map_pos = new Vector3[8,8];
+    public bool[,] isGreenZone = new bool[8,8];
     public int count = 10;                  //찍어낼 오브젝트 갯수
 
     public static MapManager MM;
@@ -32,6 +33,24 @@ public class MapManager : MonoBehaviour
             for(int j=0; j<8; j++)
             {
                map_pos[i,j] = new Vector3( 2 * j, 0, -2 * i);
+            }
+        }
+    }
+
+    public void SetGreenZone()
+    {
+        for(int i=0; i<8; i++)
+        {
+            for(int j=0; j<8; j++)
+            {
+                if( (1 < i || i < 6) && ( 1 < j || j < 6) )
+                {
+                    isGreenZone[i, j] = true;
+                }
+                else
+                {
+                    isGreenZone[i, j] = false;
+                }
             }
         }
     }

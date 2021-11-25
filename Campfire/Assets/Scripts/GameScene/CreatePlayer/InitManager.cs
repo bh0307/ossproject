@@ -24,6 +24,7 @@ public class InitManager : MonoBehaviour
     void Start()
     {
         MM.SetMapPos();
+        MM.SetGreenZone();
         RandomPos();
         CreatePlayer();
         StartCoroutine(SetPlayersInfo());

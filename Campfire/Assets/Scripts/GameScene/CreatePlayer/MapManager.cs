@@ -43,7 +43,7 @@ public class MapManager : MonoBehaviour
         {
             for(int j=0; j<8; j++)
             {
-                if( (1 < i || i < 6) && ( 1 < j || j < 6) )
+                if( (1 < i && i < 6) && ( 1 < j && j < 6) )
                 {
                     isGreenZone[i, j] = true;
                 }
@@ -77,10 +77,10 @@ public class MapManager : MonoBehaviour
             posX = Random.Range(0, 8);
             posY = Random.Range(0, 8);
 
-            if (map[posX, posY] == 0)           // map 배열의 값이 0이면 해당 위치에는 아이템이 없다는 뜻
+            if (map[posX, posY] == 0 && !isGreenZone[posX,posY])           // map 배열의 값이 0이면 해당 위치에는 아이템이 없다는 뜻
             {
-                selection = Random.Range(1, 4);
-                map[posX, posY] = selection;    // map 배열에 생성할 아이템 정보 저장
+                selection = Random.Range(1, 7);
+                PV.RPC("SetMapItem", RpcTarget.All, posX,posY,selection);    // map 배열에 생성할 아이템 정보 저장
                 break;
             }
         }

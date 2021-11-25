@@ -31,9 +31,20 @@ public class MapManager : MonoBehaviour
         {
             for(int j=0; j<8; j++)
             {
-               map_pos[i,j] = new Vector3( 2 * i, 0, -2 * j);
+               map_pos[i,j] = new Vector3( 2 * j, 0, -2 * i);
             }
         }
+    }
+
+    [PunRPC]
+    public void SetMapItem(int posX, int posY, int item)
+    {
+        map[posX, posY] = item;
+    }
+
+    public void RPC_SetMapItem(int posX, int posY, int item)
+    {
+        PV.RPC("SetMapItem", RpcTarget.All, posX, posY, item);
     }
 
     private void Spawn()

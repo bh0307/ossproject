@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class item : MonoBehaviour
 {
-    public GameObject[] prefabs; //Âï¾î³¾ °ÔÀÓ ¿ÀºêÁ§Æ®¸¦ ³Ö¾î¿ä
-                                 //¹è¿­·Î ¸¸µç ÀÌÀ¯´Â °ÔÀÓ ¿ÀºêÁ§Æ®¸¦
-                                 //´Ù¾çÇÏ°Ô Âï¾î³»±â À§ÇØ¼­ ÀÔ´Ï´Ù
-    private BoxCollider area;    //¹Ú½ºÄÝ¶óÀÌ´õÀÇ »çÀÌÁî¸¦ °¡Á®¿À±â À§ÇÔ
-    public int count = 11;      //Âï¾î³¾ °ÔÀÓ ¿ÀºêÁ§Æ® °¹¼ö
+    public GameObject[] prefabs; //ï¿½ï¿½î³¾ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½
+                                 //ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½
+                                 //ï¿½Ù¾ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½î³»ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ô´Ï´ï¿½
+    private BoxCollider area;    //ï¿½Ú½ï¿½ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½î¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public int count = 11;      //ï¿½ï¿½î³¾ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 
     private List<GameObject> gameObject = new List<GameObject>();
 
@@ -16,14 +16,14 @@ public class item : MonoBehaviour
     {
         area = GetComponent<BoxCollider>();
 
-        for (int i = 0; i < count; ++i)//count ¼ö ¸¸Å­ »ý¼ºÇÑ´Ù
+        for (int i = 0; i < count; ++i)//count ï¿½ï¿½ ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
         {
-            Spawn();//»ý¼º + ½ºÆùÀ§Ä¡¸¦ Æ÷ÇÔÇÏ´Â ÇÔ¼ö
+            Spawn();//ï¿½ï¿½ï¿½ï¿½ + ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
         }
 
         area.enabled = false;
     }
-    //¹Ø¿¡ ÄÚµå°¡ ´õ ÀÖ½À´Ï´Ù
+    //ï¿½Ø¿ï¿½ ï¿½Úµå°¡ ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½
 
     private Vector3 GetRandomPosition()
     {
@@ -38,7 +38,7 @@ public class item : MonoBehaviour
 
         return spawnPos;
     }
-    //ÇØ´ç ÇÔ¼öµéÀº À§ ½ºÅ©¸³Æ®¿¡ Æ÷ÇÔµÇ´Â ÇÔ¼öµéÀÓ
+    //ï¿½Ø´ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ÔµÇ´ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½
 
     private void Spawn()
     {
@@ -46,9 +46,9 @@ public class item : MonoBehaviour
 
         GameObject selectedPrefab = prefabs[selection];
 
-        Vector3 spawnPos = GetRandomPosition();//·£´ýÀ§Ä¡ÇÔ¼ö
+        Vector3 spawnPos = GetRandomPosition();//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½Ô¼ï¿½
 
         GameObject instance = Instantiate(selectedPrefab, spawnPos, Quaternion.identity);
         gameObject.Add(instance);
     }
-}//½ºÅ©¸³Æ® Á¾·á
+}//ï¿½ï¿½Å©ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½

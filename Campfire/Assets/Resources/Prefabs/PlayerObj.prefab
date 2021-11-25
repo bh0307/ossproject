@@ -303,6 +303,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e8571a0212ef3469d6a7759178aa88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curPosX: 0
+  curPosY: 0
+  targetPlanePrefab: {fileID: 317930947347028799, guid: 8456bbf0cd3e18943a575ae173870b87, type: 3}
+  targetPlane: {fileID: 0}
+  targetPos: {x: 0, y: 0}
+  targetPosX: 0
+  targetPosY: 0
   myTurn: 0
 --- !u!1 &3089548555239026996
 GameObject:

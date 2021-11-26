@@ -5,23 +5,26 @@ using UnityEngine.UI;
 
 public enum ItemType {
     NULL = 0,
+
     LongStick = 1,
     ShortStick = 2,
-    Iron = 3,
+
+    
+    IronStick = 3,
     FlatIron = 4,
     SharpGlass = 5,
-    IronStick = 6,
+    Iron = 6,
+    
 
-
-    Hammer = 7,
-    Shovels = 8,
-    Pickax = 9,
-    Sickle = 10
+    Pickax = 13,
+    Shovels = 14,
+    Sickle = 25,
+    Hammer = 26
 }
 
 public class ItemContainor : MonoBehaviour
 {
-    public Sprite[] itemImg = new Sprite[11];
+    public Sprite[] itemImg = new Sprite[27];
     public static ItemContainor IC;
 
     void Awake()

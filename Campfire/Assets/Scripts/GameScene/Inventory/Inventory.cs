@@ -4,13 +4,12 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
 
-
-
 public class Inventory : MonoBehaviour
 {
-    public ItemType[] itemArr = new ItemType[4];
-    public Image[] ItemSlotImage;
+    public ItemType[] itemArr = new ItemType[4];    //내 인벤토리
+    public Image[] ItemSlotImage;                   //UI의 Image
     public static Inventory IM;
+
     PhotonView PV;
     void Awake()
     {
@@ -25,17 +24,14 @@ public class Inventory : MonoBehaviour
 
     public void GetItem(int curPosX, int curPosY)
     {
-        Debug.Log("GetItem");
         for(int i = 0; i<4; i++)
         {
             if(itemArr[i] == ItemType.NULL)
             {
-                Debug.Log("if문 ok");
-                itemArr[i] = (ItemType)MapManager.MM.map[curPosX, curPosY];
-                ItemSlotImage[i].sprite = ItemContainor.IC.itemImg[(int)itemArr[i]]; 
-                Debug.Log("아이템 획득");
+                itemArr[i] = (ItemType)MapManager.MM.map[curPosX, curPosY];             //인벤토리에 저장
+                ItemSlotImage[i].sprite = ItemContainor.IC.itemImg[(int)itemArr[i]];    //이미지 교체
                 MapManager.MM.RPC_SetMapItem(curPosX, curPosY, 0); //다른 플레이어도 같이 동기화 되어야함
-                Debug.Log((int)itemArr[i]);
+                Debug.Log("획득아이템 : "+(int)itemArr[i]);
                 break;
             }
         }
@@ -55,6 +51,11 @@ public class Inventory : MonoBehaviour
             result = ItemType.Sickle;
         
         return result;
+    }
+
+    public void ThrowItem()
+    {
+
     }
 
     

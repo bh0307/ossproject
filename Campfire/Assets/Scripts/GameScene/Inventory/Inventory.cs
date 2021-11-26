@@ -58,17 +58,19 @@ public class Inventory : MonoBehaviour
                 break;
             default:
             //조합할 수 없습니다 문구.
+            Debug.Log("조합할 수 없습니다.");
                 return;
         }
-
-        itemArr[0] = (ItemType)result;
-        itemArr[1] = ItemType.NULL;
+        Debug.Log("조합 완료");
+        SetItemSlot(0, (ItemType)result);
+        SetItemSlot(1, ItemType.NULL);
     }
 
     public void ThrowItemButton()
     {
         if(MapManager.MM.map[GameManager.GM.myController.curPosX, GameManager.GM.myController.curPosX] == 0)
         {
+            Debug.Log("버릴 아이템을 선택하세요");
             //UI ON, 거기서 아이템 선택시 해당 아이템 사라지고 거기에 아이템 등록됨
             itemSlot[0].interactable = true;
             itemSlot[1].interactable = true;
@@ -77,6 +79,7 @@ public class Inventory : MonoBehaviour
         else
         {
             //메세지바 : 이미 이곳에 뭔가가 버려져있다.
+            Debug.Log("이미 뭔가 버려져있다.");
         }
     }
 

@@ -2,26 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-
-public enum ItemType {
-    NULL = 0,
-    LongStick = 1,
-    ShortStick = 2,
-    Iron = 3,
-    FlatIron = 4,
-    SharpGlass = 5,
-    IronStick = 6,
+using UnityEngine.UI;
 
 
-    Hammer,
-    Shovels,
-    Pickax,
-    Sickle
-}
 
 public class Inventory : MonoBehaviour
 {
     public ItemType[] itemArr = new ItemType[4];
+    public Image[] ItemSlotImage;
     public static Inventory IM;
     PhotonView PV;
     void Awake()
@@ -44,6 +32,7 @@ public class Inventory : MonoBehaviour
             {
                 Debug.Log("if문 ok");
                 itemArr[i] = (ItemType)MapManager.MM.map[curPosX, curPosY];
+                ItemSlotImage[i].sprite = ItemContainor.IC.itemImg[(int)itemArr[i]]; 
                 Debug.Log("아이템 획득");
                 MapManager.MM.RPC_SetMapItem(curPosX, curPosY, 0); //다른 플레이어도 같이 동기화 되어야함
                 Debug.Log((int)itemArr[i]);

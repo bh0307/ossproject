@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     [PunRPC]
     public void RPC_NewTurnStart()
     {
-        GetComponent<PhotonView>().RPC("NewTurnStart", RpcTarget.All);
+        PV.RPC("NewTurnStart", RpcTarget.All);
     }
 
     public int GetCurTurn()

@@ -23,12 +23,14 @@ public class PlayerController : MonoBehaviour
     private bool isMyTurnSelected = false;
     PhotonView PV;
     public static PlayerController playerController;
+    public Animator anim;
 
     void Awake()
     {
         PV = GetComponent<PhotonView>();
         playerController = GetComponent<PlayerController>();
         IM.PlayerControllerList.Add(this);
+        anim = GetComponent<Animator>();
     }
 
     public void InitTargetPlane()
@@ -81,6 +83,7 @@ public class PlayerController : MonoBehaviour
     public async Task Move()
     {
         targetPlane.SetActive(false);
+        anim.SetInteger("state", 1);
 
         while(true)
         {
@@ -91,7 +94,7 @@ public class PlayerController : MonoBehaviour
                 break;
             }
                 
-            transform.position = Vector3.MoveTowards(transform.position, MapManager.MM.map_pos[targetPosX, curPosY], 2f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, MapManager.MM.map_pos[targetPosX, curPosY], 5f * Time.deltaTime);
             await Task.Yield();
         }
 
@@ -104,11 +107,12 @@ public class PlayerController : MonoBehaviour
                 break;
             }
                 
-            transform.position = Vector3.MoveTowards(transform.position, MapManager.MM.map_pos[targetPosX, targetPosY], 2f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, MapManager.MM.map_pos[targetPosX, targetPosY], 5f * Time.deltaTime);
             await Task.Yield();
         }
 
         Inventory.IM.GetItem(curPosX, curPosY);
+        anim.SetInteger("state", 0);
     }
     
     

@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene_CreatePlayer.unity
     guid: a94b74cbfc5903d43acd9bcc265b6a31
+  - enabled: 1
+    path: Assets/Scenes/dev.unity
+    guid: e9e10196b1e6d4b4395a6b64f1170296
   m_configObjects: {}

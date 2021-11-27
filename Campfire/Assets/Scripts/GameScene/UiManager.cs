@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class UiManager : MonoBehaviour
     GameObject othersTurnPanel;
 
     public static UiManager UM;
+    public float LImitTime;
+    public Text text_Timer;
     PhotonView PV;
 
     void Awake()
@@ -22,7 +25,18 @@ public class UiManager : MonoBehaviour
         UM=this;
         PV = GetComponent<PhotonView>();
     }
-    
+     void Update()
+    {
+        LImitTime -= Time.deltaTime;
+        text_Timer.text = "남은 시간 : " + Mathf.Round(LImitTime);
+        if(LImitTime == 0)
+        {
+            GameManager.GM.RPC_NewTurnStart();
+            LImitTime = Time.deltaTime;
+        }
+        if()
+    }
+
     public void MyTurnStart()
     {
         myTurnStartPanel.SetActive(true);

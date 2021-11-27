@@ -38,7 +38,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public void GameStart()
     {
         //if(PhotonNetwork.PlayerList.Count() == 4)
-        PhotonNetwork.LoadLevel(3);   //진 게임씬
+        PhotonNetwork.LoadLevel(5);   //진 게임씬
         //PhotonNetwork.LoadLevel(4);     //개발용 게임씬
     }
 }

@@ -63,6 +63,7 @@ public class MapManager : MonoBehaviour
     public void SetMapItem(int posX, int posY, int item)
     {
         map[posX, posY] = item;
+        Debug.Log(posX + " " + posY);
     }
 
     public void RPC_SetMapItem(int posX, int posY, int item)
@@ -89,5 +90,7 @@ public class MapManager : MonoBehaviour
                 break;
             }
         }
+
+        
     }
 }

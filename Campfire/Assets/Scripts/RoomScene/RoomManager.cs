@@ -19,7 +19,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
         for (int i = 0; i < players.Count(); i++)
         {
             Instantiate(playerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(players[i]);
-            
         }
         gameStartBtn.SetActive(PhotonNetwork.IsMasterClient);
 
@@ -39,6 +38,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public void GameStart()
     {
         //if(PhotonNetwork.PlayerList.Count() == 4)
-        PhotonNetwork.LoadLevel(3);
+        PhotonNetwork.LoadLevel(3);   //진 게임씬
+        //PhotonNetwork.LoadLevel(4);     //개발용 게임씬
     }
 }

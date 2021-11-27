@@ -39,6 +39,18 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+  - SetTurn
+  - nextTurn
+  - Test
+  - SetValue
+  - SetPlayerList
+  - CheckMyTurn
+  - newTurnStart
+  - NewTurnStart
+  - SetPlayerCount
+  - CurTurnSync
+  - RPC_NewTurnStart
+  - SetMapItem
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

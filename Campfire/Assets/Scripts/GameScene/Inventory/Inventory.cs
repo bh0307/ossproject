@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class Inventory : MonoBehaviour
 {
     public ItemType[] itemArr = new ItemType[2];    //내 인벤토리
@@ -31,12 +31,71 @@ public class Inventory : MonoBehaviour
                 SetItemSlot(i, (ItemType)MapManager.MM.map[curPosX, curPosY]);             
                 MapManager.MM.RPC_SetMapItem(curPosX, curPosY, 0); //다른 플레이어도 같이 동기화 되어야함
                 Debug.Log("획득아이템 : "+(int)itemArr[i]);
-                if(itemArr[i] == ItemType.NULL)
+                if((curPosX==0 && curPosY==0) || (curPosX==7 && curPosY==0) || (curPosX==0 && curPosY==7) || (curPosX==7 && curPosY==7))
+                    EndingCheck(curPosX, curPosY);
+                else if(itemArr[i] == ItemType.NULL)
                     UiManager.UM.SetNotice("이곳엔 아이템이 없다.");
                 else
                     UiManager.UM.SetNotice("아이템을 얻었다.");
                 break;
             }
+        }
+    }
+
+    [PunRPC]
+    void End()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void EndingCheck(int curPosX, int curPosY)
+    {
+        if(curPosX==0 && curPosY==0)
+        {
+            if(itemArr[0] == ItemType.Hammer || itemArr[1] == ItemType.Hammer)
+            {
+                PV.RPC("End", RpcTarget.All);
+            }
+            else
+            {
+                    UiManager.UM.SetNotice("망치를 가져와야할것 같다.");
+            }
+        }
+        if(curPosX==7 && curPosY==0)
+        {
+            if(itemArr[0] == ItemType.Pickax || itemArr[1] == ItemType.Pickax)
+            {
+                PV.RPC("End", RpcTarget.All);
+            }
+            else
+            {
+                    UiManager.UM.SetNotice("곡괭이를 가져와야할것 같다.");
+            }
+            
+        }
+        if(curPosX==0 && curPosY==7)
+        {
+            if(itemArr[0] == ItemType.Sickle || itemArr[1] == ItemType.Sickle)
+            {
+                PV.RPC("End", RpcTarget.All);
+            }
+            else
+            {
+                    UiManager.UM.SetNotice("낫을 가져와야할것 같다.");
+            }
+            
+        }
+        if(curPosX==7 && curPosY==7)
+        {
+            if(itemArr[0] == ItemType.Shovels || itemArr[1] == ItemType.Shovels)
+            {
+                PV.RPC("End", RpcTarget.All);
+            }
+            else
+            {
+                    UiManager.UM.SetNotice("삽을 가져와야할것 같다.");
+            }
+            
         }
     }
 

@@ -2507,7 +2507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &894909189
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3418,6 +3418,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 3
+  img: {fileID: 1576201022}
+  imgColor: {r: 1, g: 1, b: 1, a: 1}
+  txt: {fileID: 1692813743}
+  txtColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &1317269213
 PrefabInstance:
   m_ObjectHideFlags: 0

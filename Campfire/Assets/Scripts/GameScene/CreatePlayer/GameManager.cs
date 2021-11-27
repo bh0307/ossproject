@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     public void NewTurnStart()
     {
         curTurn = (curTurn+1) % playerCount;
+        HeartManager.HM.HeartMove();
         myController.CheckMyTurn();
     }
 

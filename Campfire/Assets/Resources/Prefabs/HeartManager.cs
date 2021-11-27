@@ -14,6 +14,11 @@ public class HeartManager : MonoBehaviour
         HM = this;
     }
 
+    void Update()
+    {
+        txt.text = "온기 : " + heart;
+    }
+
     public void HeartMove()
     {
         if (MapManager.MM.isGreenZone[GameManager.GM.myController.curPosX, GameManager.GM.myController.curPosY])
@@ -28,7 +33,7 @@ public class HeartManager : MonoBehaviour
         }
 
 
-        txt.text = "온기 : " + heart.ToString();
+        
 
     }
 

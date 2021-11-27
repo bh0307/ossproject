@@ -28,13 +28,12 @@ public class UiManager : MonoBehaviour
      void Update()
     {
         LImitTime -= Time.deltaTime;
-        text_Timer.text = "남은 시간 : " + Mathf.Round(LImitTime);
-        if(LImitTime == 0)
+        text_Timer.text = "제한시간 : " + Mathf.Round(LImitTime);
+        if(LImitTime <= 1)
         {
             GameManager.GM.RPC_NewTurnStart();
-            LImitTime = Time.deltaTime;
+            LImitTime = 10f;
         }
-        if()
     }
 
     public void MyTurnStart()

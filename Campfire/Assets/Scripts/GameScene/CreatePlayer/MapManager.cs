@@ -20,6 +20,7 @@ public class MapManager : MonoBehaviour
     }
     void Start()
     {
+        SetGreenZone();
         if(PhotonNetwork.IsMasterClient)
         {
             for (int i = 0; i < count; i++)     //count 수 만큼 생성한다.

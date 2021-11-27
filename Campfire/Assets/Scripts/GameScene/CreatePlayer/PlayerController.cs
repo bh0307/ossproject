@@ -85,6 +85,8 @@ public class PlayerController : MonoBehaviour
         targetPlane.SetActive(false);
         anim.SetInteger("state", 1);
 
+
+        GameManager.GM.mine.transform.LookAt(MapManager.MM.map_pos[targetPosX, targetPosY]);
         while(true)
         {
             if(transform.position == MapManager.MM.map_pos[targetPosX, curPosY])
@@ -98,6 +100,7 @@ public class PlayerController : MonoBehaviour
             await Task.Yield();
         }
 
+        GameManager.GM.mine.transform.LookAt(MapManager.MM.map_pos[targetPosX, targetPosY]);
         while(true)
         {
             if(transform.position == MapManager.MM.map_pos[targetPosX, targetPosY])
@@ -110,6 +113,7 @@ public class PlayerController : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, MapManager.MM.map_pos[targetPosX, targetPosY], 5f * Time.deltaTime);
             await Task.Yield();
         }
+
 
         Inventory.IM.GetItem(curPosX, curPosY);
         anim.SetInteger("state", 0);

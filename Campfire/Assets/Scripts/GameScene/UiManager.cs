@@ -18,6 +18,8 @@ public class UiManager : MonoBehaviour
     public static UiManager UM;
     public float LImitTime;
     public Text text_Timer;
+    public GameObject notice_obj;
+    public Text notice;
     PhotonView PV;
 
     void Awake()
@@ -28,8 +30,8 @@ public class UiManager : MonoBehaviour
      void Update()
     {
         LImitTime -= Time.deltaTime;
-        text_Timer.text = "제한시간 : " + Mathf.Round(LImitTime);
-        if(LImitTime <= 1)
+        text_Timer.text = "제한시간 : "  + (int)LImitTime;
+        if(LImitTime <= 0)
         {
             GameManager.GM.RPC_NewTurnStart();
             LImitTime = 10f;
@@ -42,6 +44,7 @@ public class UiManager : MonoBehaviour
         myTurnMovePanel.SetActive(false);
         myTurnActionPanel.SetActive(false);
         othersTurnPanel.SetActive(false);
+        notice_obj.SetActive(false);
     }
 
     public void MyTurnMove()
@@ -51,6 +54,7 @@ public class UiManager : MonoBehaviour
         myTurnActionPanel.SetActive(false);
         othersTurnPanel.SetActive(false);
         GameManager.GM.myController.Bulddeok();
+        notice_obj.SetActive(false);
     }
 
     public void MyTurnAction()
@@ -59,6 +63,7 @@ public class UiManager : MonoBehaviour
         myTurnMovePanel.SetActive(false);
         myTurnActionPanel.SetActive(true);
         othersTurnPanel.SetActive(false);
+        notice_obj.SetActive(false);
     }
 
     public void OthersTurn()
@@ -66,6 +71,24 @@ public class UiManager : MonoBehaviour
         myTurnStartPanel.SetActive(false);
         myTurnMovePanel.SetActive(false);
         myTurnActionPanel.SetActive(false);
-        othersTurnPanel.SetActive(true);
+        //othersTurnPanel.SetActive(true);
+        notice_obj.SetActive(false);
+        notice_obj.SetActive(true);
+        SetNotice("다른 플레이어의 차례입니다.");
+    }
+
+    IEnumerator Notice()
+    {
+        notice_obj.SetActive(false);
+        notice_obj.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        notice_obj.SetActive(false);
+    }
+    
+    public void SetNotice(string txt)
+    {   
+        notice_obj.SetActive(false);
+        notice_obj.SetActive(true);
+        notice.text = txt;
     }
 }

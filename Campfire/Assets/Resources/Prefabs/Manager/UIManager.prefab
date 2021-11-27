@@ -47,3 +47,6 @@ MonoBehaviour:
   myTurnMovePanel: {fileID: 0}
   myTurnActionPanel: {fileID: 0}
   othersTurnPanel: {fileID: 0}
+  LImitTime: 10
+  text_Timer: {fileID: 0}
+  notice: {fileID: 0}

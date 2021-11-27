@@ -75,7 +75,8 @@ public class InitManager : MonoBehaviour
         /*클라이언트 별로 컨트롤러 리스트의 순서가 다름
         대신 해당 리스트는 각 플레이어 컨트롤러를 적어도 한번씩 순회하기 위해 사용함
         따라서 리스트의 순서가 달라도 상관 없음*/
-
+        yield return new WaitForSeconds(1f);
+        
         GM.NewTurnStart();
         //플레이어 차례 시작
     }

@@ -41,8 +41,12 @@ public class GameManager : MonoBehaviour
     public void NewTurnStart()
     {
         curTurn = (curTurn+1) % playerCount;
+        UiManager.UM.LImitTime = 10f; //시간제한 초기화
+        Inventory.IM.itemSlot[0].interactable = false; //버튼 비활성화
+        Inventory.IM.itemSlot[1].interactable = false; //버튼 비활성화
         HeartManager.HM.HeartMove();
         myController.CheckMyTurn();
+        
     }
 
     [PunRPC]

@@ -10,7 +10,7 @@ public class item : MonoBehaviour
     private BoxCollider area;    //�ڽ��ݶ��̴��� ����� �������� ����
     public int count = 11;      //�� ���� ������Ʈ ����
 
-    private List<GameObject> gameObject = new List<GameObject>();
+    private List<GameObject> gameObjectList = new List<GameObject>();
 
     void Start()
     {
@@ -49,6 +49,6 @@ public class item : MonoBehaviour
         Vector3 spawnPos = GetRandomPosition();//������ġ�Լ�
 
         GameObject instance = Instantiate(selectedPrefab, spawnPos, Quaternion.identity);
-        gameObject.Add(instance);
+        gameObjectList.Add(instance);
     }
 }//��ũ��Ʈ ����

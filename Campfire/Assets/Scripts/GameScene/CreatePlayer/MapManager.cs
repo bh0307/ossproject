@@ -21,6 +21,7 @@ public class MapManager : MonoBehaviour
     void Start()
     {
         SetGreenZone();
+        SetEndingCondition();
         if(PhotonNetwork.IsMasterClient)
         {
             for (int i = 0; i < count; i++)     //count 수 만큼 생성한다.
@@ -73,6 +74,27 @@ public class MapManager : MonoBehaviour
         Debug.Log(posX + " " + posY);
     }
 
+    private void SetEndingCondition()
+    {
+        int[] conditionArr = {-13,-14,-25,-26};
+        int[] posX = {0, 0, 7, 7};
+        int[] posY = {0, 7, 0, 7};
+        
+        for(int i=0; i<4; i++)
+        {
+            while(true)
+            {
+                int conditionIndex = Random.Range(0,4);
+                if(conditionArr[conditionIndex] != 0)
+                {
+                    map[posX[i], posY[i]] = conditionArr[conditionIndex];
+                    conditionArr[conditionIndex] = 0;
+                    break;
+                }
+            }
+        }
+    }
+
     private void Spawn()
     {
         int posX;
@@ -91,7 +113,6 @@ public class MapManager : MonoBehaviour
                 break;
             }
         }
-
         
     }
 }

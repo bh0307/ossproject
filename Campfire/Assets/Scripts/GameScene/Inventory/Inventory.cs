@@ -24,22 +24,29 @@ public class Inventory : MonoBehaviour
 
     public void GetItem(int curPosX, int curPosY)
     {
-        for(int i = 0; i<itemArr.Length; i++)
+        if((curPosX==0 && curPosY==0) || (curPosX==7 && curPosY==0) || (curPosX==0 && curPosY==7) || (curPosX==7 && curPosY==7))
         {
-            if(itemArr[i] == ItemType.NULL)
+            EndingCheck(curPosX, curPosY);
+        }
+        else
+        {
+            for(int i = 0; i<itemArr.Length; i++)
             {
-                SetItemSlot(i, (ItemType)MapManager.MM.map[curPosX, curPosY]);             
-                MapManager.MM.RPC_SetMapItem(curPosX, curPosY, 0); //다른 플레이어도 같이 동기화 되어야함
-                Debug.Log("획득아이템 : "+(int)itemArr[i]);
-                if((curPosX==0 && curPosY==0) || (curPosX==7 && curPosY==0) || (curPosX==0 && curPosY==7) || (curPosX==7 && curPosY==7))
-                    EndingCheck(curPosX, curPosY);
-                else if(itemArr[i] == ItemType.NULL)
-                    UiManager.UM.SetNotice("이곳엔 아이템이 없다.");
-                else
-                    UiManager.UM.SetNotice("아이템을 얻었다.");
-                break;
+                if(itemArr[i] == ItemType.NULL)
+                {
+                    SetItemSlot(i, (ItemType)MapManager.MM.map[curPosX, curPosY]);             
+                    MapManager.MM.RPC_SetMapItem(curPosX, curPosY, 0); //다른 플레이어도 같이 동기화 되어야함
+                    Debug.Log("획득아이템 : "+(int)itemArr[i]);
+                
+                    if(itemArr[i] == ItemType.NULL)
+                        UiManager.UM.SetNotice("이곳엔 아이템이 없다.");
+                    else
+                        UiManager.UM.SetNotice("아이템을 얻었다.");
+                    break;
+                }
             }
         }
+        
     }
 
     [PunRPC]
@@ -50,53 +57,31 @@ public class Inventory : MonoBehaviour
 
     public void EndingCheck(int curPosX, int curPosY)
     {
-        if(curPosX==0 && curPosY==0)
+        ItemType item = (ItemType)(-MapManager.MM.map[curPosX, curPosY]);
+        Debug.Log(item);
+        if(item == itemArr[0] || item == itemArr[1] )
         {
-            if(itemArr[0] == ItemType.Hammer || itemArr[1] == ItemType.Hammer)
-            {
-                PV.RPC("End", RpcTarget.All);
-            }
-            else
-            {
-                    UiManager.UM.SetNotice("망치를 가져와야할것 같다.");
-            }
+            PV.RPC("End", RpcTarget.All);
         }
-        if(curPosX==7 && curPosY==0)
+        else
         {
-            if(itemArr[0] == ItemType.Pickax || itemArr[1] == ItemType.Pickax)
+            switch(item)
             {
-                PV.RPC("End", RpcTarget.All);
-            }
-            else
-            {
+                case ItemType.Pickax:
                     UiManager.UM.SetNotice("곡괭이를 가져와야할것 같다.");
-            }
-            
-        }
-        if(curPosX==0 && curPosY==7)
-        {
-            if(itemArr[0] == ItemType.Sickle || itemArr[1] == ItemType.Sickle)
-            {
-                PV.RPC("End", RpcTarget.All);
-            }
-            else
-            {
-                    UiManager.UM.SetNotice("낫을 가져와야할것 같다.");
-            }
-            
-        }
-        if(curPosX==7 && curPosY==7)
-        {
-            if(itemArr[0] == ItemType.Shovels || itemArr[1] == ItemType.Shovels)
-            {
-                PV.RPC("End", RpcTarget.All);
-            }
-            else
-            {
+                    break;
+                case ItemType.Shovels:
                     UiManager.UM.SetNotice("삽을 가져와야할것 같다.");
+                    break;
+                case ItemType.Sickle:
+                    UiManager.UM.SetNotice("낫을 가져와야할것 같다.");
+                    break;
+                case ItemType.Hammer:
+                    UiManager.UM.SetNotice("망치를 가져와야할것 같다.");
+                    break;
             }
-            
         }
+
     }
 
     public void MixItem()
@@ -148,8 +133,7 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            UiManager.UM.SetNotice("이미 뭔가 버려져있다.");
-            Debug.Log("이미 뭔가 버려져있다.");
+            UiManager.UM.SetNotice("이곳엔 버릴 수 없다.");
         }
     }
 

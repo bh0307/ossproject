@@ -16,25 +16,28 @@ public class UiManager : MonoBehaviour
     GameObject othersTurnPanel;
 
     public static UiManager UM;
-    public float LImitTime;
     public Text text_Timer;
+    public Text text_Heart;
     public GameObject notice_obj;
     public Text notice;
     PhotonView PV;
+
+    public float curTimelimit;
 
     void Awake()
     {
         UM=this;
         PV = GetComponent<PhotonView>();
+        curTimelimit = GameManager.GM.timelimit;
     }
-     void Update()
+    void Update()
     {
-        LImitTime -= Time.deltaTime;
-        text_Timer.text = "Á¦ÇÑ½Ã°£ : "  + (int)LImitTime;
-        if(LImitTime <= 0)
+        curTimelimit -= Time.deltaTime;
+        text_Timer.text = "ë‚¨ì€ ì‹œê°„ : "  + (int)curTimelimit;
+        text_Heart.text = "ì˜¨ê¸° : " + HeartManager.HM.heart;
+        if(curTimelimit <= 0)
         {
             GameManager.GM.RPC_NewTurnStart();
-            LImitTime = 10f;
         }
     }
 
@@ -74,7 +77,7 @@ public class UiManager : MonoBehaviour
         //othersTurnPanel.SetActive(true);
         notice_obj.SetActive(false);
         notice_obj.SetActive(true);
-        SetNotice("´Ù¸¥ ÇÃ·¹ÀÌ¾îÀÇ Â÷·ÊÀÔ´Ï´Ù.");
+        SetNotice("ë‹¤ë¥¸ í”Œë ˆì´ì–´ì˜ ì°¨ë¡€ìž…ë‹ˆë‹¤.");
     }
 
     IEnumerator Notice()

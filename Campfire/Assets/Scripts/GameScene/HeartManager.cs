@@ -7,16 +7,10 @@ public class HeartManager : MonoBehaviour
 {
     public static HeartManager HM;
     public int heart = 1;
-    public Text txt;
 
     void Awake()
     {
         HM = this;
-    }
-
-    void Update()
-    {
-        txt.text = "¿Â±â : " + heart;
     }
 
     public void HeartMove()
@@ -31,12 +25,5 @@ public class HeartManager : MonoBehaviour
             if (heart > 0)
                 heart -= 1;
         }
-
-
-        
-
     }
-
-
-
 }

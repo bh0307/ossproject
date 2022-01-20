@@ -133,14 +133,13 @@ public class Inventory : MonoBehaviour
 
     public void ThrowItemButton()
     {
-        if(MapManager.MM.map[GameManager.GM.myController.curPosX, GameManager.GM.myController.curPosX] == 0)
+        if(MapManager.MM.map[GameManager.GM.myController.curPosX, GameManager.GM.myController.curPosY] == 0)
         {
             if(itemArr[0] == ItemType.NULL && itemArr[1] == ItemType.NULL)
             {
                 UiManager.UM.SetNotice("버릴 아이템이 없다.");
                 return;
             }
-            Debug.Log("버릴 아이템을 선택하세요");
             UiManager.UM.SetNotice("오른쪽에서 버릴 아이템을 선택해야한다.");
             //UI ON, 거기서 아이템 선택시 해당 아이템 사라지고 거기에 아이템 등록됨
             itemSlot[0].interactable = true;

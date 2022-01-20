@@ -1575,6 +1575,10 @@ PrefabInstance:
       propertyPath: txt
       value: 
       objectReference: {fileID: 894909190}
+    - target: {fileID: 8743737172865267155, guid: be25e7530f1347a428d35dd9a2646e2b, type: 3}
+      propertyPath: timelimit
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be25e7530f1347a428d35dd9a2646e2b, type: 3}
 --- !u!1 &453632862
@@ -1813,7 +1817,6 @@ GameObject:
   - component: {fileID: 597160280}
   - component: {fileID: 597160283}
   - component: {fileID: 597160282}
-  - component: {fileID: 597160281}
   m_Layer: 5
   m_Name: Time
   m_TagString: Untagged
@@ -1840,26 +1843,6 @@ RectTransform:
   m_AnchoredPosition: {x: 357, y: 439}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &597160281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 597160279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b012c447e073b0942b97490a67c0f4b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myTurnStartPanel: {fileID: 0}
-  myTurnMovePanel: {fileID: 0}
-  myTurnActionPanel: {fileID: 0}
-  othersTurnPanel: {fileID: 0}
-  LImitTime: 60
-  text_Timer: {fileID: 597160282}
-  notice_obj: {fileID: 0}
-  notice: {fileID: 0}
 --- !u!114 &597160282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3419,9 +3402,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 3
   img: {fileID: 1576201022}
-  imgColor: {r: 1, g: 1, b: 1, a: 1}
   txt: {fileID: 1692813743}
-  txtColor: {r: 1, g: 1, b: 1, a: 1}
+  newColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &1317269213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4797,13 +4779,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1692813743}
     - target: {fileID: 793476738189170583, guid: e9af02f2e69698b408a3190932065cc2, type: 3}
+      propertyPath: LImitTime
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 793476738189170583, guid: e9af02f2e69698b408a3190932065cc2, type: 3}
       propertyPath: notice_obj
       value: 
       objectReference: {fileID: 1280189116}
     - target: {fileID: 793476738189170583, guid: e9af02f2e69698b408a3190932065cc2, type: 3}
+      propertyPath: text_Heart
+      value: 
+      objectReference: {fileID: 1390774928}
+    - target: {fileID: 793476738189170583, guid: e9af02f2e69698b408a3190932065cc2, type: 3}
       propertyPath: text_Timer
       value: 
       objectReference: {fileID: 597160282}
+    - target: {fileID: 793476738189170583, guid: e9af02f2e69698b408a3190932065cc2, type: 3}
+      propertyPath: curTimelimit
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 793476738189170583, guid: e9af02f2e69698b408a3190932065cc2, type: 3}
       propertyPath: myTurnMovePanel
       value: 
